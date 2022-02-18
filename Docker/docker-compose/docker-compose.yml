@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+  #Angular
+  webui:
+    image: xxxxxxxxxx
+    restart: on-failure
+    environment:
+      - TZ=Asia/Bangkok
+    ports:
+      - "8000:80"
+    depends_on:
+     - server
+  #API Golang
+  server:
+    image: xxxxxxxxxx
+    restart: on-failure
+    environment:
+      - APP_NAME=xxxxx
+      - SERVER_MODE=xxxx
+      - SERVER_URL=xxxxx
+      - CACHE_HOST=xxxxx
+      - CACHE_PORT=xxxxx
+      - CACHE_DB=xxxx
+      - ONE_ID_CLIENT_ID=xxxxx
+    ports:
+      - "5000:5000"
+    depends_on:
+     - redis
+  redis:
+    image: redis:alpine
+    restart: always
+    command: redis-server --maxclients 100000
+    ports:
+      - 6379:6379
