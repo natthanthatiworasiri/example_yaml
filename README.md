@@ -20,3 +20,5 @@
 **kubectl describe podname**
 ##### describe in namespace
 **kubectl describe podnamp --namespace namespace**
+#### Export pod/service/daemon to yaml file #####
+**kubectl get daemonset kube-proxy --namespace kube-system -o yaml > ttt.yaml**
